@@ -14,7 +14,7 @@
 ## 🚀 Getting Started
 
 >[!NOTE]
-> **BitWarriors** is a project built using the Microservices architecture. Despite using NextJS, it is merely for the purpose of performing SSR on React. The application still needs to establish a connection with a separate backend API Gateway in order to work as intended. This is also under development [here](https://github.com/waterrmalann/bit-warriors-backend). Stay tuned for instructions to self-host!
+> **BitWarriors** is a project built using the Microservices architecture. NextJS is being utilized merely for the purpose of React SSR. The application still needs to establish a connection with a separate backend API Gateway in order to work as intended. This is also under development [here](https://github.com/waterrmalann/bit-warriors-backend). Stay tuned for instructions to self-host!
 
 ## 🤝 Contribution
 
