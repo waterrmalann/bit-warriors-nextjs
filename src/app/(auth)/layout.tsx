@@ -1,4 +1,4 @@
-import JoinDiscordButton from "@/components/JoinDiscordButton"
+import JoinDiscordButton from "../components/JoinDiscordButton"
 
 export default function Layout({
     children,
