@@ -1,6 +1,9 @@
 "use client";
 
 import useUser from "@/app/hooks/useUser";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
@@ -9,18 +12,37 @@ import { useRef } from "react";
 
 export default function LoginPage() {
     const router = useRouter();
+    const { toast } = useToast();
     const { user, refetch } = useUser();
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
     async function loginHandler() {
+
+        const username = usernameRef.current?.value;
+        const password = passwordRef.current?.value;
+        if (!username || username.length < 4) {
+            toast({
+                variant: "destructive",
+                title: "Enter in a valid username."
+            });
+            return;
+        }
+        if (!password || password.length < 8) {
+            toast({
+                variant: "destructive",
+                title: "Password must be atleast 8 characters long."
+            });
+            return;
+        }
+
         try {
             const res = await axios.post(
                 "http://localhost:3002/login",
                 {
-                    username: usernameRef.current?.value,
-                    password: passwordRef.current?.value,
+                    username: username,
+                    password: password,
                 },
                 {
                     headers: {
@@ -35,6 +57,11 @@ export default function LoginPage() {
             router.push('/home');
         } catch (e) {
             console.error(e);
+            toast({
+                variant: "destructive",
+                title: "An error occured.",
+                description: "Please try again.",
+              });
         }
     }
 
@@ -61,24 +88,24 @@ export default function LoginPage() {
                 </div>
                 <div>
                     <form className="flex flex-col gap-y-2 w-[400px] m-auto items-center">
-                        <input
+                        <Input
                             ref={usernameRef}
                             placeholder="Username"
                             name="username"
                             type="text"
                         />
-                        <input
+                        <Input
                             ref={passwordRef}
                             placeholder="Password"
                             name="password"
                             type="password"
                         />
-                        <button type="button" onClick={() => loginHandler()}>
+                        <Button type="button" onClick={() => loginHandler()}>
                             Log in
-                        </button>
+                        </Button>
                     </form>
                 </div>
-                <p className="px-8 text-center text-sm text-muted-foreground">
+                <p className="px-8 text-center text-sm text-muted-foreground w-[400px] m-auto items-center">
                     By clicking continue, you agree to our{" "}
                     <Link
                         href="/terms"
