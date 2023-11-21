@@ -1,27 +1,40 @@
 "use client";
 
-import useUser from "@/app/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { API_ROUTES } from "@/lib/routes";
 import axios from "axios";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import useLogin from "@/hooks/useLogin";
 // import axios from "@/app/config/axios.config";
 
-export default function LoginPage() {
+function LoginPage() {
+    const { trigger } = useLogin();
+    const { user, loading, mutate, isLoggedIn } = useUser();
     const router = useRouter();
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            router.replace("/home");
+        }
+    }, [])
+
     const { toast } = useToast();
-    const { user, refetch } = useUser();
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
-    async function loginHandler() {
+    async function loginHandler(e: React.SyntheticEvent) {
+        e.preventDefault();
 
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
+
         if (!username || username.length < 4) {
             toast({
                 variant: "destructive",
@@ -37,36 +50,17 @@ export default function LoginPage() {
             return;
         }
 
-        try {
-            const res = await axios.post(
-                "http://localhost:3002/login",
-                {
-                    username: username,
-                    password: password,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    withCredentials: true,
-                }
-            );
-
-            console.log(res.data);
-            refetch();
-            router.push('/home');
-        } catch (e) {
-            console.error(e);
+        const { data, error } = await trigger(username, password);
+        if (error) {
             toast({
                 variant: "destructive",
-                title: "An error occured.",
-                description: "Please try again.",
-              });
+                title: "An error occured",
+                description: error.message
+            });
+        } else {
+            mutate();
+            router.replace('/home');
         }
-    }
-
-    if (user?.isLoggedIn) {
-        redirect('/home');
     }
 
     return (
@@ -77,7 +71,7 @@ export default function LoginPage() {
             >
                 Signup
             </Link>
-            <div className="mx-auto h-full flex w-full flex-col justify-center space-y-6">
+            <div className="mx-auto h-full flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                 <div className="flex flex-col space-y-2 text-center">
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Login to your account.
@@ -87,22 +81,26 @@ export default function LoginPage() {
                     </p>
                 </div>
                 <div>
-                    <form className="flex flex-col gap-y-2 w-[400px] m-auto items-center">
-                        <Input
-                            ref={usernameRef}
-                            placeholder="Username"
-                            name="username"
-                            type="text"
-                        />
-                        <Input
-                            ref={passwordRef}
-                            placeholder="Password"
-                            name="password"
-                            type="password"
-                        />
-                        <Button type="button" onClick={() => loginHandler()}>
-                            Log in
-                        </Button>
+                    <form onSubmit={loginHandler}>
+                        <div className="grid gap-2">
+                            <div className="grid gap-1">
+                                <Input
+                                    ref={usernameRef}
+                                    placeholder="Username"
+                                    name="username"
+                                    type="text"
+                                />
+                                <Input
+                                    ref={passwordRef}
+                                    placeholder="Password"
+                                    name="password"
+                                    type="password"
+                                />
+                            </div>
+                            <Button type="submit">
+                                Log in
+                            </Button>
+                        </div>
                     </form>
                 </div>
                 <p className="px-8 text-center text-sm text-muted-foreground w-[400px] m-auto items-center">
@@ -126,3 +124,5 @@ export default function LoginPage() {
         </>
     );
 }
+
+export default LoginPage;
