@@ -9,14 +9,16 @@ import { API_ROUTES } from "@/lib/routes";
 import axios from "axios";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useLogin from "@/hooks/useLogin";
+import { LuLoader2 } from "react-icons/lu";
 // import axios from "@/app/config/axios.config";
 
 function LoginPage() {
     const { trigger } = useLogin();
     const { user, loading, mutate, isLoggedIn } = useUser();
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -50,12 +52,14 @@ function LoginPage() {
             return;
         }
 
+        setIsLoading(true);
         const { data, error } = await trigger(username, password);
+        setIsLoading(false);
         if (error) {
             toast({
                 variant: "destructive",
                 title: "An error occured",
-                description: error.message
+                description: error.response?.data.message ?? error.message
             });
         } else {
             mutate();
@@ -97,13 +101,15 @@ function LoginPage() {
                                     type="password"
                                 />
                             </div>
-                            <Button type="submit">
-                                Log in
+                            <Button disabled={isLoading} type="submit">
+                                {isLoading && (
+                                    <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                                )} Log in
                             </Button>
                         </div>
                     </form>
                 </div>
-                <p className="px-8 text-center text-sm text-muted-foreground w-[400px] m-auto items-center">
+                <p className="px-8 text-center text-sm text-muted-foreground items-center">
                     By clicking continue, you agree to our{" "}
                     <Link
                         href="/terms"
