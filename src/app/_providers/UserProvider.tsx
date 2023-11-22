@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import UserContext, { User } from "../contexts/UserContext";
+import UserContext, { User } from "../_contexts/UserContext";
 import axios, { AxiosResponse } from "axios";
 
 interface ResponseData {
@@ -15,7 +15,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
         _id: "",
         username: "",
         email: "",
-        isLoggedIn: null,
+        isLoggedIn: null
     });
 
     async function getUserData() {
