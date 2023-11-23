@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 const Logo = () => {
   return (
-    <>{"<Bit"}<span className="text-primary font-extrabold">{"Warriors"}</span>{"/>"}</>
+    <Link href="/">{"<Bit"}<span className="text-primary font-extrabold">{"Warriors"}</span>{"/>"}</Link>
   )
 }
 
