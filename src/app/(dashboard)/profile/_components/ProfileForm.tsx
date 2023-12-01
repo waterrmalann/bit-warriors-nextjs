@@ -27,6 +27,8 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
 import { Separator } from "@/components/ui/separator"
+import axios, { AxiosResponse } from "axios"
+import { API_ROUTES } from "@/lib/routes"
 
 const profileFormSchema = z.object({
     username: z
@@ -41,9 +43,7 @@ const profileFormSchema = z.object({
         .string()
         .optional(),
     email: z
-        .string({
-            required_error: "Please select an email to display.",
-        })
+        .string()
         .email(),
     bio: z.string().max(160).min(4).optional(),
 
@@ -66,7 +66,35 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
         mode: "onChange",
     })
 
-    function onSubmit(data: ProfileFormValues) {
+    async function onSubmit(data: ProfileFormValues) {
+        try {
+            const res = await axios.put(API_ROUTES.PROFILE.PUT(defaultValues.username!), data, {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true, // get cookies
+            }) as AxiosResponse;
+            if (res.status === 204) {
+                toast({
+                    variant: "success",
+                    title: "Profile Update",
+                    description: "You have updated your profile information."
+                });
+                // todo: useUser().mutate()
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast({
+                    variant: "destructive",
+                    title: "An error occured.",
+                    description: error.message
+                });
+                console.group("(Axios Error): [ProfileForm.tsx] onSubmit()");
+                console.error(error);
+                console.groupEnd();
+            } else {
+                throw error;
+            }
+        }
+
         toast({
             title: "You submitted the following values:",
             description: (
@@ -92,7 +120,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                                 </FormControl>
                                 <FormDescription>
                                     This is your public display name. It can be your real name or a
-                                    pseudonym. You can only change this once every 30 days.
+                                    pseudonym.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>

@@ -41,8 +41,7 @@ const Page = () => {
                             xUsername: user.xUsername,
                             personalWebsite: user.personalWebsite
                         }
-                    }/> 
-                    }
+                    }/>}
                 </CardContent>
             </Card>
             <Card>
@@ -51,7 +50,7 @@ const Page = () => {
                     <CardDescription>Change your existing password.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <PasswordForm/>
+                    <PasswordForm username={user?.username ?? null}/>
                 </CardContent>
                 <CardFooter>
                     <p className="text-muted-foreground text-sm">It&apos;s a good idea to change your password as often as every 6 months.</p>

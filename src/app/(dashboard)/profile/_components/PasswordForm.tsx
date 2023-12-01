@@ -16,38 +16,71 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { API_ROUTES } from "@/lib/routes"
+import axios, { AxiosResponse } from "axios"
 
 const passwordFormSchema = z.object({
     oldPassword: z.string(),
-    password: z
+    newPassword: z
         .string()
         .min(8, { message: "Password must be atleast 8 characters" }),
     confirmPassword: z
         .string()
         .min(1, { message: "Confirm Password is required" }),
-}).refine((data) => data.password === data.confirmPassword, {
+}).refine((data) => data.newPassword === data.confirmPassword, {
     path: ["confirmPassword"],
     message: "Password don't match",
 });
 
 type PasswordFormValues = z.infer<typeof passwordFormSchema>
 
+interface PasswordFormProps extends React.HTMLAttributes<HTMLDivElement> {
+    username: string | null;
+}
 
-export function PasswordForm() {
+export function PasswordForm({ username }: PasswordFormProps) {
     const form = useForm<PasswordFormValues>({
         resolver: zodResolver(passwordFormSchema),
         mode: "onChange",
     })
 
-    function onSubmit(data: PasswordFormValues) {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        })
+    async function onSubmit(data: PasswordFormValues) {
+        try {
+            const res = await axios.put(API_ROUTES.PROFILE.PASSWORD_PUT(username ?? ''), data, {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true, // get cookies
+            }) as AxiosResponse;
+            if (res.status === 204) {
+                toast({
+                    variant: "success",
+                    title: "Password Update",
+                    description: "You have updated your password."
+                });
+                // todo: form.reset();
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast({
+                    variant: "destructive",
+                    title: "An error occured.",
+                    description: error.response?.data.message ?? error.message
+                });
+                console.group("(Axios Error): [PasswordForm.tsx] onSubmit()");
+                console.error(error);
+                console.groupEnd();
+            } else {
+                throw error;
+            }
+        }
+
+        // toast({
+        //     title: "You submitted the following values:",
+        //     description: (
+        //         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+        //             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        //         </pre>
+        //     ),
+        // })
     }
 
     return (
@@ -72,7 +105,7 @@ export function PasswordForm() {
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <FormField
                         control={form.control}
-                        name="password"
+                        name="newPassword"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>New Password</FormLabel>
@@ -111,7 +144,7 @@ export function PasswordForm() {
         </div>
     </div> */}
 
-                <Button type="submit">Change Password</Button>
+                <Button disabled={username === null} type="submit">Change Password</Button>
             </form>
         </Form>
     )

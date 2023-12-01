@@ -17,6 +17,8 @@ export const API_ROUTES = {
     },
     PROFILE: {
         GET: (username: string) => `http://localhost:3002/users/${username}`,
+        PUT: (username: string) => `http://localhost:3002/users/${username}`,
+        PASSWORD_PUT: (username: string) => `http://localhost:3002/users/${username}/password`
     },
     PREFERENCES: {
         PATCH: '/api/user/prefs'
