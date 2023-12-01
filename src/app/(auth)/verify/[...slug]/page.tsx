@@ -17,7 +17,7 @@ export default function VerifyEmailPage() {
         if (error) {
             if (error.response?.data.message !== 'user is already email verified') {
                 toast({
-                    variant: "destructive",
+                    variant: "warning",
                     title: "An error occured.",
                     description: "Could not verify email address."
                 });

@@ -39,14 +39,14 @@ function LoginPage() {
 
         if (!username || username.length < 4) {
             toast({
-                variant: "destructive",
+                variant: "warning",
                 title: "Enter in a valid username."
             });
             return;
         }
         if (!password || password.length < 8) {
             toast({
-                variant: "destructive",
+                variant: "warning",
                 title: "Password must be atleast 8 characters long."
             });
             return;

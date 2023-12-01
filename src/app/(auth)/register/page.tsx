@@ -42,21 +42,21 @@ function RegisterPage() {
 
         if (!username || username.length < 4) {
             toast({
-                variant: "destructive",
+                variant: "warning",
                 title: "Enter in a valid username."
             });
             return;
         }
         if (!email) {
             toast({
-                variant: "destructive",
+                variant: "warning",
                 title: "Enter in a valid email address."
             });
             return;
         }
         if (!password || password.length < 8) {
             toast({
-                variant: "destructive",
+                variant: "warning",
                 title: "Password must be atleast 8 characters long."
             });
             return;
