@@ -1,6 +1,8 @@
+"use client"; 
+
 import React from 'react'
 import { PasswordForm } from './_components/PasswordForm'
-
+import { LuChevronLeft } from 'react-icons/lu';
 import {
     Card,
     CardContent,
@@ -10,17 +12,37 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { ProfileForm } from './_components/ProfileForm'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { useUser } from '@/hooks/useUser';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const page = () => {
+const Page = () => {
+    const { user } = useUser();
+
     return (
         <div className="space-y-6 p-10 pb-16 md:block">
+            <Link href="/home"><Button variant="ghost"><LuChevronLeft className="mr-2 h-4 w-4" /> Back</Button></Link>
             <Card>
                 <CardHeader>
                     <CardTitle>Profile Settings</CardTitle>
                     <CardDescription>Manage your account settings and set e-mail preferences.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <ProfileForm />
+                    { !user && <Skeleton className="w-[100px] h-[50px] rounded-full" /> }
+                    { user && <ProfileForm defaultValues={
+                        {
+                            username: user.username,
+                            email: user.email,
+                            bio: user.bio,
+                            clan: user.clan,
+                            githubUsername: user.githubUsername,
+                            linkedInUsername: user.linkedInUsername,
+                            xUsername: user.xUsername,
+                            personalWebsite: user.personalWebsite
+                        }
+                    }/> 
+                    }
                 </CardContent>
             </Card>
             <Card>
@@ -39,4 +61,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

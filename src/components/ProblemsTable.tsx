@@ -43,7 +43,7 @@ export function ProblemsTable({problems}: ProblemTableProps) {
             </TableHeader>
             <TableBody>
                 {problems.map((problem) => (
-                    <TableRow key={problem.id}>
+                    <TableRow key={problem.problemId}>
                         <TableCell className="font-medium">{problem.problemId}</TableCell>
                         <TableCell>{problem.title}</TableCell>
                         <TableCell className="text-right">0.0%</TableCell>

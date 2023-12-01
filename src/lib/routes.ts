@@ -16,8 +16,7 @@ export const API_ROUTES = {
         PROBLEM_GET: (problemId: string) => `http://localhost:3003/${problemId}`
     },
     PROFILE: {
-        GET: '/api/user/profile',
-        PATCH: '/api/user/profile',
+        GET: (username: string) => `http://localhost:3002/users/${username}`,
     },
     PREFERENCES: {
         PATCH: '/api/user/prefs'

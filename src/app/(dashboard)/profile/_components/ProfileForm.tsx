@@ -31,8 +31,8 @@ import { Separator } from "@/components/ui/separator"
 const profileFormSchema = z.object({
     username: z
         .string()
-        .min(2, {
-            message: "Username must be at least 2 characters.",
+        .min(3, {
+            message: "Username must be at least 3 characters.",
         })
         .max(30, {
             message: "Username must not be longer than 30 characters.",
@@ -47,20 +47,19 @@ const profileFormSchema = z.object({
         .email(),
     bio: z.string().max(160).min(4).optional(),
 
-    githubUsername: z.string().optional(),
-    linkedInUsername: z.string().optional(),
-    xUsername: z.string().optional(),
-    personalWebsite: z.string().url().optional(),
+    githubUsername: z.string().max(39).optional(),
+    linkedInUsername: z.string().max(100).optional(),
+    xUsername: z.string().max(15).optional(),
+    personalWebsite: z.string().url().optional().or(z.literal('')),
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-// This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-    bio: "I own a computer.",
+interface ProfileFormProps extends React.HTMLAttributes<HTMLDivElement> {
+    defaultValues: Partial<ProfileFormValues>;
 }
 
-export function ProfileForm() {
+export function ProfileForm({ defaultValues }: ProfileFormProps) {
     const form = useForm<ProfileFormValues>({
         resolver: zodResolver(profileFormSchema),
         defaultValues,
@@ -117,31 +116,21 @@ export function ProfileForm() {
                     />
                 </div>
                 <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a verified email to display" />
-                                    </SelectTrigger>
+                                    <Input placeholder="mail@example.com" {...field} />
                                 </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                    <SelectItem value="m@support.com">m@support.com</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            <FormDescription>
-                                You can manage verified email addresses in your{" "}
-                                <Link href="/examples/forms">email settings</Link>.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                <FormDescription>
+                                    You cannot change a verified email address.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 <FormField
                     control={form.control}
                     name="bio"
@@ -173,7 +162,7 @@ export function ProfileForm() {
                             <FormItem>
                                 <FormLabel>Github Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="@username" {...field} />
+                                    <Input placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -186,7 +175,7 @@ export function ProfileForm() {
                             <FormItem>
                                 <FormLabel>LinkedIn Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="@username" {...field} />
+                                    <Input placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -199,7 +188,7 @@ export function ProfileForm() {
                             <FormItem>
                                 <FormLabel>X (Formerly Twitter) Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="@username" {...field} />
+                                    <Input placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -212,7 +201,7 @@ export function ProfileForm() {
                             <FormItem>
                                 <FormLabel>Personal Website</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="@username" {...field} />
+                                    <Input placeholder="https://example.com" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

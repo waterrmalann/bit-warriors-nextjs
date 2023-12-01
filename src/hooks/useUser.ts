@@ -3,11 +3,29 @@
 import { API_ROUTES } from '@/lib/routes';
 import axios, { AxiosResponse } from 'axios';
 import useSWR from 'swr';
-
 type User = {
-    _id: string;
+    id: string;
     username: string;
     email: string;
+    emailVerified: boolean;
+    followers: number;
+    following: number;
+    createdAt: string;
+    mfa: boolean;
+
+    totalScore: number;
+    totalSubmissions: number;
+    totalActiveDays: number;
+    currentActiveDays: number;
+    maxActiveDays: number;
+
+    clan: string;
+    bio: string;
+
+    githubUsername: string;
+    linkedInUsername: string;
+    xUsername: string;
+    personalWebsite: string;
 };
 
 async function userFetcher(url: string) {
@@ -23,7 +41,7 @@ export function useUser() {
 
     const loading = user === undefined && error === undefined;
     const isLoggedIn = !!user && !isLoading; // error && error.status === 403;
-    console.log("isLoggedIn", isLoggedIn);
+    console.log(user);
 
     const logout = async () => {
         const request = await fetch(API_ROUTES.AUTH.LOGOUT_GET, { credentials: 'include' });

@@ -73,7 +73,7 @@ export function UserNav() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <Link href="/profile"><DropdownMenuItem>
+                    <Link href={`/${user?.username ?? 'profile'}`}><DropdownMenuItem>
                         Profile
                         <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem></Link>
@@ -81,7 +81,7 @@ export function UserNav() {
                         Submissions
                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                    <Link href="/profile/settings"><DropdownMenuItem>
+                    <Link href="/profile"><DropdownMenuItem>
                         Settings
                         <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                     </DropdownMenuItem></Link>
