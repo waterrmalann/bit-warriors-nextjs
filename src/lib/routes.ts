@@ -11,6 +11,10 @@ export const API_ROUTES = {
         EMAIL_GET: (verificationCode: string) => `http://localhost:3002/verify/${verificationCode}`,
         PWD_GET: (verificationCode: string, userId: string) => `/api/user/forget/${verificationCode}?uid=${userId}`
     },
+    PROBLEMS: {
+        GET: "http://localhost:3003?limit=10",
+        PROBLEM_GET: (problemId: string) => `http://localhost:3003/${problemId}`
+    },
     PROFILE: {
         GET: '/api/user/profile',
         PATCH: '/api/user/profile',
