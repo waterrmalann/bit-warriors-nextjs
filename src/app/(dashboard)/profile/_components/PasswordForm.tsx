@@ -18,6 +18,8 @@ import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { API_ROUTES } from "@/lib/routes"
 import axios, { AxiosResponse } from "axios"
+import { useState } from "react"
+import { LuLoader2 } from "react-icons/lu"
 
 const passwordFormSchema = z.object({
     oldPassword: z.string(),
@@ -42,10 +44,13 @@ export function PasswordForm({ username }: PasswordFormProps) {
     const form = useForm<PasswordFormValues>({
         resolver: zodResolver(passwordFormSchema),
         mode: "onChange",
-    })
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     async function onSubmit(data: PasswordFormValues) {
         try {
+            setIsSubmitting(true);
             const res = await axios.put(API_ROUTES.PROFILE.PASSWORD_PUT(username ?? ''), data, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true, // get cookies
@@ -71,6 +76,8 @@ export function PasswordForm({ username }: PasswordFormProps) {
             } else {
                 throw error;
             }
+        } finally {
+            setIsSubmitting(false);
         }
 
         // toast({
@@ -144,7 +151,10 @@ export function PasswordForm({ username }: PasswordFormProps) {
         </div>
     </div> */}
 
-                <Button disabled={username === null} type="submit">Change Password</Button>
+                <Button disabled={username === null || isSubmitting} type="submit">
+                    {isSubmitting && <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />} 
+                    Change Password
+                </Button>
             </form>
         </Form>
     )

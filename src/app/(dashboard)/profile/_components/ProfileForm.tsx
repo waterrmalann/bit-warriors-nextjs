@@ -29,6 +29,8 @@ import { toast } from "@/components/ui/use-toast"
 import { Separator } from "@/components/ui/separator"
 import axios, { AxiosResponse } from "axios"
 import { API_ROUTES } from "@/lib/routes"
+import { useState } from "react"
+import { LuLoader2 } from "react-icons/lu"
 
 const profileFormSchema = z.object({
     username: z
@@ -64,10 +66,13 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
         resolver: zodResolver(profileFormSchema),
         defaultValues,
         mode: "onChange",
-    })
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     async function onSubmit(data: ProfileFormValues) {
         try {
+            setIsSubmitting(true);
             const res = await axios.put(API_ROUTES.PROFILE.PUT(defaultValues.username!), data, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true, // get cookies
@@ -93,16 +98,9 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
             } else {
                 throw error;
             }
+        } finally {
+            setIsSubmitting(false);
         }
-
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        })
     }
 
     return (
@@ -236,7 +234,10 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                         )}
                     />
                 </div>
-                <Button type="submit">Update profile</Button>
+                <Button disabled={isSubmitting} type="submit">
+                    {isSubmitting && <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />} 
+                    Update
+                </Button>
             </form>
         </Form>
     )
