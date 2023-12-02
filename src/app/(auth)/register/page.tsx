@@ -13,7 +13,7 @@ import { API_ROUTES } from "@/lib/routes";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import useRegister from "@/hooks/useRegister";
-import {LuLoader2} from 'react-icons/lu';
+import { LuGithub, LuLoader2 } from 'react-icons/lu';
 
 function RegisterPage() {
     const { toast } = useToast();
@@ -32,6 +32,12 @@ function RegisterPage() {
     const usernameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+
+    function githubHandler(e: React.SyntheticEvent) {
+        e.preventDefault();
+        // todo: process.env!
+        router.push("https://github.com/login/oauth/authorize?client_id=b06da579ae8ce7812864&scope=user:email")
+    }
 
     async function registerHandler(e: React.SyntheticEvent) {
         e.preventDefault();
@@ -96,12 +102,12 @@ function RegisterPage() {
                 </div>
                 <div>
                     <form onSubmit={registerHandler}>
-                        <div className="grid gap-2">
+                        <div className="grid gap-3">
                             <div className="grid gap-1">
                                 <Label className="sr-only" htmlFor="username">
                                     Username
                                 </Label>
-                                <Input
+                                <Input className="bg-neutral-800 my-1"
                                     id="username"
                                     placeholder="username"
                                     type="text"
@@ -115,7 +121,7 @@ function RegisterPage() {
                                 <Label className="sr-only" htmlFor="email">
                                     Email
                                 </Label>
-                                <Input
+                                <Input className="bg-neutral-800 my-1"
                                     id="email"
                                     placeholder="name@example.com"
                                     type="email"
@@ -129,7 +135,7 @@ function RegisterPage() {
                                 <Label className="sr-only" htmlFor="password">
                                     Password
                                 </Label>
-                                <Input
+                                <Input className="bg-neutral-800 my-1"
                                     id="password"
                                     placeholder="password"
                                     type="password"
@@ -148,6 +154,26 @@ function RegisterPage() {
                             </Button>
                         </div>
                     </form>
+                    <div className="relative my-5">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="px-2 bg-neutral-900 text-muted-foreground">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+                    <div className="grid my-2">
+                        <Button onClick={githubHandler} className="bg-neutral-900" variant="outline" type="button" disabled={isLoading}>
+                            {isLoading ? (
+                                <LuLoader2 className="animate-spin mr-2 h-4 w-4" />
+                            ) : (
+                                <LuGithub className="mr-2 h-4 w-4" />
+                            )}{" "}
+                            Github
+                        </Button>
+                    </div>
 
                 </div>
                 <p className="px-8 text-center text-sm text-muted-foreground items-center">

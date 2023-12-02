@@ -11,7 +11,7 @@ import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import useLogin from "@/hooks/useLogin";
-import { LuLoader2 } from "react-icons/lu";
+import { LuGithub, LuLoader2 } from "react-icons/lu";
 // import axios from "@/app/config/axios.config";
 
 function LoginPage() {
@@ -30,6 +30,12 @@ function LoginPage() {
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+
+    function githubHandler(e: React.SyntheticEvent) {
+        e.preventDefault();
+        // todo: process.env!
+        router.push("https://github.com/login/oauth/authorize?client_id=b06da579ae8ce7812864&scope=user:email")
+    }
 
     async function loginHandler(e: React.SyntheticEvent) {
         e.preventDefault();
@@ -86,15 +92,15 @@ function LoginPage() {
                 </div>
                 <div>
                     <form onSubmit={loginHandler}>
-                        <div className="grid gap-2">
+                        <div className="grid gap-3">
                             <div className="grid gap-1">
-                                <Input
+                                <Input className="bg-neutral-800 my-1"
                                     ref={usernameRef}
                                     placeholder="Username"
                                     name="username"
                                     type="text"
                                 />
-                                <Input
+                                <Input className="bg-neutral-800 my-1"
                                     ref={passwordRef}
                                     placeholder="Password"
                                     name="password"
@@ -108,6 +114,26 @@ function LoginPage() {
                             </Button>
                         </div>
                     </form>
+                    <div className="relative my-5">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="px-2 bg-neutral-900 text-muted-foreground">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+                    <div className="grid my-2">
+                        <Button onClick={githubHandler} className="bg-neutral-900" variant="outline" type="button" disabled={isLoading}>
+                            {isLoading ? (
+                                <LuLoader2 className="animate-spin mr-2 h-4 w-4" />
+                            ) : (
+                                <LuGithub className="mr-2 h-4 w-4" />
+                            )}{" "}
+                            Github
+                        </Button>
+                    </div>
                 </div>
                 <p className="px-8 text-center text-sm text-muted-foreground items-center">
                     By clicking continue, you agree to our{" "}
