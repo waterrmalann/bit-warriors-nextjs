@@ -117,7 +117,7 @@ export function PasswordForm({ username }: PasswordFormProps) {
                             <FormItem>
                                 <FormLabel>New Password</FormLabel>
                                 <FormControl>
-                                    <Input type="password" placeholder="existing password" {...field} />
+                                    <Input type="password" placeholder="new password" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     Enter in a new password.
