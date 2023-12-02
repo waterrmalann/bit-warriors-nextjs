@@ -13,7 +13,8 @@ export const API_ROUTES = {
     },
     PROBLEMS: {
         GET: "http://localhost:3003?limit=10",
-        PROBLEM_GET: (problemId: string) => `http://localhost:3003/${problemId}`
+        PROBLEM_GET: (problemId: string) => `http://localhost:3003/${problemId}`,
+        RANDOM_GET: "http://localhost:3003/random"
     },
     PROFILE: {
         GET: (username: string) => `http://localhost:3002/users/${username}`,
