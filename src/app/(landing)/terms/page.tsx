@@ -10,7 +10,7 @@ function TermsOfUse() {
             <p className="mb-4">By accessing or using the Platform, you agree to abide by these Terms of Use and all applicable laws and regulations. If you do not agree with any part of these terms, you may not access the Platform.</p>
 
             <h2 className="text-2xl font-bold mb-2">Use of the Platform</h2>
-            <p className="mb-4">The Platform is intended for personal and non-commercial use. You agree to use the Platform only for its intended purpose of participating in coding challenges, submitting solutions, and engaging with other users within the scope of our <Link className="underline" href="/community-guidelines">community guidelines</Link>.</p>
+            <p className="mb-4">The Platform is intended for personal and non-commercial use. You agree to use the Platform only for its intended purpose of participating in coding challenges, submitting solutions, and engaging with other users within the scope of our <Link className="underline" href="/guidelines">community guidelines</Link>.</p>
 
             <h2 className="text-2xl font-bold mb-2">User Accounts</h2>
             <p className="mb-4">When creating an account on the Platform, you are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate, current, and complete information during the registration process and to update this information promptly if there are any changes.</p>
