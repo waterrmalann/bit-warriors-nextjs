@@ -39,9 +39,8 @@ async function userFetcher(url: string) {
 export function useUser() {
     const { data: user, mutate, error, isLoading } = useSWR<User>(API_ROUTES.AUTH.GET, userFetcher);
 
-    const loading = user === undefined && error === undefined;
+    // const loading = user === undefined && error === undefined;
     const isLoggedIn = !!user && !isLoading; // error && error.status === 403;
-    console.log(user);
 
     const logout = async () => {
         const request = await fetch(API_ROUTES.AUTH.LOGOUT_GET, { credentials: 'include' });
@@ -53,7 +52,7 @@ export function useUser() {
 
     return {
         user,
-        loading,
+        loading: isLoading,
         mutate,
         logout,
         isLoggedIn,

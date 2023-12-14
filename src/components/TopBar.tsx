@@ -34,21 +34,7 @@ export function UserNav() {
         }
     }
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-            router.replace("/login");
-        }
-    }, [])
-
-    if (loading) {
-        return (
-            <div className="text-center h-screen flex items-center justify-center">
-                <p>Loading...</p>
-            </div>
-        )
-    }
-
-    if (!isLoggedIn) {
+    if (!user) {
         return null;
     }
 
@@ -118,7 +104,7 @@ export function TopBar() {
 
     return (
         <>
-            <div className="hidden flex-col md:flex">
+            <div className="dark:bg-neutral-900  hidden flex-col md:flex">
                 <div className="border-b">
                     <div className="flex h-16 items-center px-4">
                         <div className="flex items-center text-lg font-mono">

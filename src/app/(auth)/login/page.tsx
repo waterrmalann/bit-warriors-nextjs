@@ -94,13 +94,13 @@ function LoginPage() {
                     <form onSubmit={loginHandler}>
                         <div className="grid gap-3">
                             <div className="grid gap-1">
-                                <Input className="bg-neutral-800 my-1"
+                                <Input className="dark:bg-neutral-800 my-1"
                                     ref={usernameRef}
                                     placeholder="Username"
                                     name="username"
                                     type="text"
                                 />
-                                <Input className="bg-neutral-800 my-1"
+                                <Input className="dark:bg-neutral-800 my-1"
                                     ref={passwordRef}
                                     placeholder="Password"
                                     name="password"
@@ -119,13 +119,13 @@ function LoginPage() {
                             <span className="w-full border-t" />
                         </div>
                         <div className="relative flex justify-center text-xs uppercase">
-                            <span className="px-2 bg-neutral-900 text-muted-foreground">
+                            <span className="px-2 dark:bg-neutral-900 text-muted-foreground">
                                 Or continue with
                             </span>
                         </div>
                     </div>
                     <div className="grid my-2">
-                        <Button onClick={githubHandler} className="bg-neutral-900" variant="outline" type="button" disabled={isLoading}>
+                        <Button onClick={githubHandler} className="dark:bg-neutral-900" variant="outline" type="button" disabled={isLoading}>
                             {isLoading ? (
                                 <LuLoader2 className="animate-spin mr-2 h-4 w-4" />
                             ) : (

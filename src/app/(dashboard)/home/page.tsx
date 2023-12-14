@@ -17,8 +17,11 @@ import {
 import { Input } from '@/components/ui/input';
 import QuestionCard from './_components/QuestionCard';
 import { Separator } from '@/components/ui/separator';
+import isAuth from '@/components/isAuthenticated';
 
-export default function HomePage() {
+export default isAuth(HomePage);
+
+function HomePage() {
     const { user, loading, isLoggedIn, logout } = useUser();
     const { problems } = useProblems();
     const router = useRouter();
@@ -31,63 +34,45 @@ export default function HomePage() {
         }
     }
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-            router.replace("/login");
-        }
-    }, [])
-
-    if (loading) {
-        return (
-            <div className="text-center h-screen flex items-center justify-center">
-                <p>Loading...</p>
-            </div>
-        )
-    }
-
-    if (!isLoggedIn) {
-        return null;
-    }
-
     return (
         <>
-            <div className="space-y-6 p-16 pb-16 md:block">
+            <div className="dark:bg-neutral-900 h-screen space-y-6 p-16 pb-16 md:block">
                 <QuestionCard />
                 <Separator />
                 <h1 className="font-bold text-xl">Challenges</h1>
                 <div className="grid grid-cols-5">
 
                     <Select>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
                             <SelectValue placeholder="Difficulty" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-neutral-700">
                             <SelectItem value="light">Easy</SelectItem>
                             <SelectItem value="dark">Medium</SelectItem>
                             <SelectItem value="system">Hard</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
                             <SelectValue placeholder="Status" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-neutral-700">
                             <SelectItem value="light">Incomplete</SelectItem>
                             <SelectItem value="dark">Solved</SelectItem>
                             <SelectItem value="system">Unattempted</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
                             <SelectValue placeholder="Tags" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="dark:bg-neutral-700">
                             <SelectItem value="light">Array</SelectItem>
                             <SelectItem value="dark">DSA</SelectItem>
                             <SelectItem value="system">Strings</SelectItem>
                         </SelectContent>
                     </Select>
-                    <Input type="text" className="col-span-2" placeholder="Search questions..." />
+                    <Input type="text" className="col-span-2 dark:bg-neutral-700" placeholder="Search questions..." />
 
                 </div>
 
