@@ -1,16 +1,13 @@
 "use client";
 
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 
-export default function CodeEditor() {
-  const [code, setCode] = React.useState(
-    `function add(a, b) {\n  return a + b;\n}`
-  );
+export default function CodeEditor({ code, setCode }: { code: string; setCode: React.Dispatch<SetStateAction<string>>}) {
   return (
     <Editor
       value={code}
