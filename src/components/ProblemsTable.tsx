@@ -8,6 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import Link from "next/link";
 
 type Problem = {
     id: string;
@@ -43,12 +44,14 @@ export function ProblemsTable({problems}: ProblemTableProps) {
             </TableHeader>
             <TableBody>
                 {problems.map((problem) => (
-                    <TableRow key={problem.problemId}>
-                        <TableCell className="font-medium">{problem.problemId}</TableCell>
-                        <TableCell>{problem.title}</TableCell>
-                        <TableCell className="text-right">0.0%</TableCell>
-                        <TableCell className="text-right">{problem.difficulty}</TableCell>
-                    </TableRow>
+                    
+                        <TableRow key={problem.problemId}>
+                            <TableCell className="font-medium"><Link href={`/problems/${problem.problemId}`}>{problem.problemId}</Link></TableCell>
+                            <TableCell className="font-medium"><Link href={`/problems/${problem.problemId}`}>{problem.title}</Link></TableCell>
+                            <TableCell className="text-right">0.0%</TableCell>
+                            <TableCell className="text-right">{problem.difficulty}</TableCell>
+                        </TableRow>
+                    
                 ))}
             </TableBody>
         </Table>
