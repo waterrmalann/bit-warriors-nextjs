@@ -12,6 +12,8 @@ import { redirect, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import useLogin from "@/hooks/useLogin";
 import { LuGithub, LuLoader2 } from "react-icons/lu";
+import {BiLogoGoogle} from 'react-icons/bi';
+import { getGoogleOAuthURL } from "@/lib/utils";
 // import axios from "@/app/config/axios.config";
 
 function LoginPage() {
@@ -35,6 +37,12 @@ function LoginPage() {
         e.preventDefault();
         // todo: process.env!
         router.push("https://github.com/login/oauth/authorize?client_id=b06da579ae8ce7812864&scope=user:email")
+    }
+
+    function googleHandler(e: React.SyntheticEvent) {
+        e.preventDefault();
+        const url = getGoogleOAuthURL();
+        router.push(url);
     }
 
     async function loginHandler(e: React.SyntheticEvent) {
@@ -132,6 +140,14 @@ function LoginPage() {
                                 <LuGithub className="mr-2 h-4 w-4" />
                             )}{" "}
                             Github
+                        </Button>
+                        <Button onClick={googleHandler} className="dark:bg-neutral-900 mt-3" variant="outline" type="button" disabled={isLoading}>
+                            {isLoading ? (
+                                <LuLoader2 className="animate-spin mr-2 h-4 w-4" />
+                            ) : (
+                                <BiLogoGoogle className="mr-2 h-4 w-4" />
+                            )}{" "}
+                            Google
                         </Button>
                     </div>
                 </div>

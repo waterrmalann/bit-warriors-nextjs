@@ -3,7 +3,8 @@ export const API_ROUTES = {
     AUTH: {
         GET: "http://localhost:3001/api/user/auth",
         REGISTER_POST: "http://localhost:3001/api/user/register",
-        REGISTER_GITHUB_POST: "http://localhost:3001/api/user/oauth-github", 
+        REGISTER_GITHUB_POST: "http://localhost:3001/api/user/oauth-github",
+        REGISTER_GOOGLE_POST: "http://localhost:3001/api/user/oauth-google",
         LOGIN_POST: "http://localhost:3001/api/user/login",
         LOGOUT_GET: "http://localhost:3001/api/user/logout",
         MFA_POST: "http://localhost:3001/api/user/login-mfa",

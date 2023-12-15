@@ -16,3 +16,19 @@ export function getInitials(name: string): string {
   const initials = words.map(word => word[0].toUpperCase()).join('').slice(0, 2);
   return initials;
 }
+
+export function getGoogleOAuthURL() {
+  const rootURL = 'https://accounts.google.com/o/oauth2/v2/auth';
+  const qs = new URLSearchParams();
+  qs.append('redirect_uri', "http://localhost:3000/oauth/google/callback");
+  qs.append('client_id', process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string)
+  qs.append('access_type', 'offline');
+  qs.append('response_type', 'code');
+  qs.append('prompt', 'consent');
+  qs.append('scope', [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+  ].join(' '));
+  
+  return `${rootURL}?${qs.toString()}`;
+}
