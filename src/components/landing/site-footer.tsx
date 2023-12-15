@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Code } from "lucide-react"
-import { ThemeToggle } from "./ThemeToggle"
+import { ThemeToggle } from "../ThemeToggle"
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (

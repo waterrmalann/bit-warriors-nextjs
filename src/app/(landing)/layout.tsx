@@ -2,8 +2,8 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { MainNav } from "@/components/top-nav"
-import { SiteFooter } from "@/components/site-footer"
+import { MainNav } from "@/components/landing/top-nav"
+import { SiteFooter } from "@/components/landing/site-footer"
 
 interface LandingPageLayoutProps {
   children: React.ReactNode

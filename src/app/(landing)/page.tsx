@@ -2,7 +2,6 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { EyeIcon } from "lucide-react"
 
 export default async function IndexPage() {
   return (
@@ -28,7 +27,6 @@ export default async function IndexPage() {
             </Link>
             <Link
               href="/login"
-              target="_blank"
               rel="noreferrer"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
