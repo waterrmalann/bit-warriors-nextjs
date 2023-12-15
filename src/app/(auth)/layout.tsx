@@ -1,8 +1,8 @@
 "use client";
 
 import isAuth from "@/components/isAuthenticated";
-import JoinDiscordButton from "../_components/JoinDiscordButton"
-import Logo from '../_components/Logo';
+import JoinDiscordButton from "@/components/JoinDiscordButton"
+import Logo from '@/components/Logo';
 
 function Layout({
     children,

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import UserProvider from './_providers/UserProvider'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Toaster } from '@/components/ui/toaster'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
@@ -27,10 +26,8 @@ export default function RootLayout({
         ) : null}
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <UserProvider>
             {children}
             <Toaster />
-          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

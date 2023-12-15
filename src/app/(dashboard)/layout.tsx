@@ -1,7 +1,6 @@
 "use client";
 
 import { TopBar } from '@/components/TopBar';
-import Logo from '../_components/Logo';
 
 function Layout({
     children,
