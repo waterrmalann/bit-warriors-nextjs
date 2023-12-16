@@ -1,6 +1,12 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
  
+/**
+ * Merges multiple class names together.
+ *
+ * @param inputs - The class names to merge.
+ * @returns The merged class names.
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -17,6 +23,11 @@ export function getInitials(name: string): string {
   return initials;
 }
 
+/**
+ * Generates a URL for Google OAuth.
+ *
+ * @returns The URL for Google OAuth.
+ */
 export function getGoogleOAuthURL() {
   const rootURL = 'https://accounts.google.com/o/oauth2/v2/auth';
   const qs = new URLSearchParams();
@@ -30,5 +41,18 @@ export function getGoogleOAuthURL() {
       "https://www.googleapis.com/auth/userinfo.email"
   ].join(' '));
   
+  return `${rootURL}?${qs.toString()}`;
+}
+
+/**
+ * Generates a URL for GitHub OAuth.
+ *
+ * @returns The URL for GitHub OAuth.
+ */
+export function getGithubOAuthURL() {
+  const rootURL = "https://github.com/login/oauth/authorize";
+  const qs = new URLSearchParams();
+  qs.append('client_id', process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID as string);
+
   return `${rootURL}?${qs.toString()}`;
 }
