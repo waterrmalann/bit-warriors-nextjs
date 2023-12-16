@@ -1,4 +1,4 @@
-import Logo from "@/app/_components/Logo";
+import Logo from "@/components/Logo";
 import {
     Avatar,
     AvatarFallback,

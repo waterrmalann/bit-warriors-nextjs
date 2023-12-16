@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import useLogin from "@/hooks/useLogin";
 import { LuGithub, LuLoader2 } from "react-icons/lu";
 import {BiLogoGoogle} from 'react-icons/bi';
-import { getGoogleOAuthURL } from "@/lib/utils";
+import { getGithubOAuthURL, getGoogleOAuthURL } from "@/lib/utils";
 // import axios from "@/app/config/axios.config";
 
 function LoginPage() {
@@ -35,8 +35,8 @@ function LoginPage() {
 
     function githubHandler(e: React.SyntheticEvent) {
         e.preventDefault();
-        // todo: process.env!
-        router.push("https://github.com/login/oauth/authorize?client_id=b06da579ae8ce7812864&scope=user:email")
+        const url = getGithubOAuthURL();
+        router.push(url);
     }
 
     function googleHandler(e: React.SyntheticEvent) {

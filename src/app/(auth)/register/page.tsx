@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import useRegister from "@/hooks/useRegister";
 import { LuGithub, LuLoader2 } from 'react-icons/lu';
+import { getGithubOAuthURL } from "@/lib/utils";
 
 function RegisterPage() {
     const { toast } = useToast();
@@ -35,8 +36,8 @@ function RegisterPage() {
 
     function githubHandler(e: React.SyntheticEvent) {
         e.preventDefault();
-        // todo: process.env!
-        router.push("https://github.com/login/oauth/authorize?client_id=b06da579ae8ce7812864&scope=user:email")
+        const url = getGithubOAuthURL();
+        router.push(url);
     }
 
     async function registerHandler(e: React.SyntheticEvent) {
