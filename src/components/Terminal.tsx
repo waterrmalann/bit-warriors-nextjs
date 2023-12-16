@@ -41,14 +41,14 @@ function RenderLineComponent(line: TerminalLine) {
 	} else {
 		return (
 			<p className="">
-				<span className="text-blue-500">{line.content.label}</span>{" "}
+				{line.content.passed ? "• [✓] " : "• [⨯] "} <span className="text-blue-500">{line.content.label}</span>{" "}
 				{line.content.passed ? (
 					<>
-						<span className="text-green-400">PASS</span> 
+						<span className="text-green-400">PASS</span>{" "}<span className="text-gray-500">{line.content.test}</span> 
 					</>
 				) : (
 					<>
-						<span className="text-red-400">FAIL</span>{" "}
+						<span className="text-red-400">FAIL</span>{" "}<span className="text-gray-500">{line.content.test}</span><br/>
 						<span className="text-gray-500">{line.content.message}</span>
 					</>
 				)}
