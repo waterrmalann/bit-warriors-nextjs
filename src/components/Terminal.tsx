@@ -33,7 +33,7 @@ function RenderLineComponent(line: TerminalLine) {
 			)
 		} else if (line.type === TerminalLineType.ERROR) {
 			return (
-				<p key={line.content} className="text-red-500">
+				<p key={line.content} className="text-red-500 text-xl font-bold border-2 border-b-red-500 m-2 px-2 inline">
 					{"! "} {line.content}
 				</p>
 			)

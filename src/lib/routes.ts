@@ -18,7 +18,10 @@ export const API_ROUTES = {
         PROBLEM_GET: (problemId: string) => `http://localhost:3001/api/problem/${problemId}`,
         RANDOM_GET: "http://localhost:3001/api/problem/random",
         RUN_POST: (problemId: string) => `http://localhost:3001/api/submission/runs/${problemId}`,
-        SUBMIT_POST: (problemId: string) => `http://localhost:3001/api/submission/submit/${problemId}`,
+        SUBMIT_POST: (problemId: string) => `http://localhost:3001/api/submission/submissions/${problemId}`,
+    },
+    SUBMISSION: {
+        FEEDBACK_GET: (submissionId: string) => `http://localhost:3001/api/submission/feedbacks/${submissionId}`
     },
     PROFILE: {
         GET: (username: string) => `http://localhost:3001/api/user/users/${username}`,
