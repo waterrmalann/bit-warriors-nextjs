@@ -292,7 +292,7 @@ export default function Page({ params }: { params: { problem: string } }) {
                                     {e}
                                 </Badge>
                             ))}
-                            <Markdown className="max-h-[90%] overflow-y-auto overflow-x-hidden word-break-all white-space-wrap mt-5 pb-3 prose dark:prose-invert">
+                            <Markdown className="max-h-[35rem] overflow-y-auto overflow-x-hidden word-break-all white-space-wrap mt-5 pb-3 prose dark:prose-invert">
                                 {problem?.description ?? "*This problem is being loaded.*"}
                             </Markdown>
                         </TabsContent>

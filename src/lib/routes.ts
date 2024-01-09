@@ -1,37 +1,37 @@
 export const API_ROUTES = {
 
     AUTH: {
-        GET: "http://localhost:3001/api/user/auth",
-        REGISTER_POST: "http://localhost:3001/api/user/register",
-        REGISTER_GITHUB_POST: "http://localhost:3001/api/user/oauth-github",
-        REGISTER_GOOGLE_POST: "http://localhost:3001/api/user/oauth-google",
-        LOGIN_POST: "http://localhost:3001/api/user/login",
-        LOGOUT_GET: "http://localhost:3001/api/user/logout",
-        MFA_POST: "http://localhost:3001/api/user/login-mfa",
+        GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/auth`,
+        REGISTER_POST: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/register`,
+        REGISTER_GITHUB_POST: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/oauth-github`,
+        REGISTER_GOOGLE_POST: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/oauth-google`,
+        LOGIN_POST: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/login`,
+        LOGOUT_GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/logout`,
+        MFA_POST: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/login-mfa`,
     },
     VERIFICATION: {
-        EMAIL_GET: (verificationCode: string) => `http://localhost:3001/api/user/verify/${verificationCode}`,
+        EMAIL_GET: (verificationCode: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/verify/${verificationCode}`,
         PWD_GET: (verificationCode: string, userId: string) => `/api/user/forget/${verificationCode}?uid=${userId}`
     },
     PROBLEMS: {
-        GET: "http://localhost:3001/api/problem?limit=10",
-        PROBLEM_GET: (problemId: string) => `http://localhost:3001/api/problem/${problemId}`,
-        RANDOM_GET: "http://localhost:3001/api/problem/random",
-        RUN_POST: (problemId: string) => `http://localhost:3001/api/submission/runs/${problemId}`,
-        SUBMIT_POST: (problemId: string) => `http://localhost:3001/api/submission/submissions/${problemId}`,
+        GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/problem?limit=10`,
+        PROBLEM_GET: (problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/problem/${problemId}`,
+        RANDOM_GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/problem/random`,
+        RUN_POST: (problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/runs/${problemId}`,
+        SUBMIT_POST: (problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/submissions/${problemId}`,
     },
     SUBMISSION: {
-        FEEDBACK_GET: (submissionId: string) => `http://localhost:3001/api/submission/feedbacks/${submissionId}`
+        FEEDBACK_GET: (submissionId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/feedbacks/${submissionId}`
     },
     PROFILE: {
-        GET: (username: string) => `http://localhost:3001/api/user/users/${username}`,
-        PUT: (username: string) => `http://localhost:3001/api/user/users/${username}`,
-        PASSWORD_PUT: (username: string) => `http://localhost:3001/api/user/users/${username}/password`
+        GET: (username: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/users/${username}`,
+        PUT: (username: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/users/${username}`,
+        PASSWORD_PUT: (username: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/users/${username}/password`
     },
     PREFERENCES: {
         PATCH: '/api/user/prefs'
     },
     DASHBOARD: {
-        GET: "/api/user/dashboard"
+        GET: `/api/user/dashboard`
     }
 };
