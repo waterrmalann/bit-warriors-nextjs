@@ -10,6 +10,8 @@ export type UserProfile = {
     bio: string;
     followers: number,
     following: number,
+    totalScore: number,
+    totalSubmissions: number
     // ranking, lastSeen
 };
 
