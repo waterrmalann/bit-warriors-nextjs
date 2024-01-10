@@ -20,6 +20,9 @@ export const API_ROUTES = {
         RUN_POST: (problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/runs/${problemId}`,
         SUBMIT_POST: (problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/submissions/${problemId}`,
     },
+    LEADERBOARDS: {
+        GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/leaderboards`,
+    },
     SUBMISSION: {
         FEEDBACK_GET: (submissionId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/feedbacks/${submissionId}`
     },
