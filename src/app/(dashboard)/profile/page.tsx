@@ -21,9 +21,9 @@ const Page = () => {
     const { user } = useUser();
 
     return (
-        <div className="space-y-6 p-10 pb-16 md:block">
+        <div className="dark:bg-neutral-900 min-h-screen h-full space-y-6 p-16 pb-16 md:block">
             <Link href="/home"><Button variant="ghost"><LuChevronLeft className="mr-2 h-4 w-4" /> Back</Button></Link>
-            <Card>
+            <Card className="dark:bg-neutral-900">
                 <CardHeader>
                     <CardTitle>Profile Settings</CardTitle>
                     <CardDescription>Manage your account settings and set e-mail preferences.</CardDescription>
@@ -44,7 +44,7 @@ const Page = () => {
                     }/>}
                 </CardContent>
             </Card>
-            <Card>
+            <Card className="dark:bg-neutral-900">
                 <CardHeader>
                     <CardTitle>Password Settings</CardTitle>
                     <CardDescription>Change your existing password.</CardDescription>

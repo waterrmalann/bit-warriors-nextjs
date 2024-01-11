@@ -48,7 +48,7 @@ export function UserNav() {
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
+            <DropdownMenuContent className="dark:bg-neutral-800 w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">@{user?.username}</p>
@@ -59,21 +59,21 @@ export function UserNav() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <Link href={`/${user?.username ?? 'profile'}`}><DropdownMenuItem>
+                    <Link href={`/${user?.username ?? 'profile'}`}><DropdownMenuItem className="hover:dark:bg-neutral-700">
                         Profile
                         <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem></Link>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="hover:dark:bg-neutral-700">
                         Submissions
                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                    <Link href="/profile"><DropdownMenuItem>
+                    <Link href="/profile"><DropdownMenuItem className="hover:dark:bg-neutral-700">
                         Settings
                         <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                     </DropdownMenuItem></Link>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem onClick={handleLogout} className="hover:dark:bg-neutral-700">
                     {loading ? 'Logging out' : 'Log out'}
                     <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>

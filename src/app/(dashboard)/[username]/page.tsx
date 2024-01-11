@@ -10,13 +10,11 @@ export default function Page({ params }: { params: { username: string } }) {
 
   return (
     <>
-      <div className="space-y-6 p-10 md:block">
+      <div className="dark:bg-neutral-900 min-h-screen h-full space-y-6 p-16 pb-16 md:block">
         {profile && <ProfileCard profile={profile} />}
-      </div>
-      <div className="space-y-6 pb-16 md:block">
         <RankCard
-            totalScore={profile?.totalScore || 0}
-            totalSubmissions={profile?.totalSubmissions || 0}
+          totalScore={profile?.totalScore || 0}
+          totalSubmissions={profile?.totalSubmissions || 0}
         />
       </div>
     </>

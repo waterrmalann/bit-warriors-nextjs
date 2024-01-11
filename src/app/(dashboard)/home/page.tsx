@@ -36,7 +36,7 @@ function HomePage() {
 
     return (
         <>
-            <div className="dark:bg-neutral-900 h-screen space-y-6 p-16 pb-16 md:block">
+            <div className="dark:bg-neutral-900 min-h-screen h-full space-y-6 p-16 pb-16 md:block">
                 <QuestionCard />
                 <Separator />
                 <h1 className="font-bold text-xl">Challenges</h1>

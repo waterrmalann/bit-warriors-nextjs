@@ -114,7 +114,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="@username" {...field} />
+                                    <Input className="dark:bg-neutral-800" placeholder="@username" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     This is your public display name. It can be your real name or a
@@ -131,7 +131,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>Clan</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="warriors" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="warriors" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     If set, you will be allied with users with the same clan.
@@ -148,7 +148,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="mail@example.com" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="mail@example.com" {...field} />
                                 </FormControl>
                                 <FormDescription>
                                     You cannot change a verified email address.
@@ -166,7 +166,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormControl>
                                 <Textarea
                                     placeholder="Tell us a little bit about yourself"
-                                    className="resize-none"
+                                    className="resize-none dark:bg-neutral-800"
                                     {...field}
                                 />
                             </FormControl>
@@ -188,7 +188,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>Github Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="username" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -201,7 +201,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>LinkedIn Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="username" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -214,7 +214,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>X (Formerly Twitter) Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="username" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="username" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -227,7 +227,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
                             <FormItem>
                                 <FormLabel>Personal Website</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="https://example.com" {...field} />
+                                    <Input className="dark:bg-neutral-800"  placeholder="https://example.com" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
