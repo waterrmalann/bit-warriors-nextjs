@@ -25,7 +25,7 @@ interface ProfileCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ProfileCard = ({ profile }: ProfileCardProps) => {
   return (
-    <Card className="bg-neutral-900 w-[1024px] mx-auto p-5">
+    <Card className="bg-neutral-800 w-[1024px] mx-auto p-5">
       <div className="flex">
         <ProfilePicture />
         <CardHeader>
