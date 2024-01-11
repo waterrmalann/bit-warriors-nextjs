@@ -4,9 +4,10 @@ import { Card } from "@/components/ui/card";
 import ProfileCard from "./_components/ProfileCard";
 import { UserProfile, useProfile } from "@/hooks/useProfile";
 import RankCard from "./_components/RankCard";
+import { RecentSubmissions } from "./_components/RecentSubmissions";
 
 export default function Page({ params }: { params: { username: string } }) {
-  const { profile } = useProfile(params.username);
+  const { profile, recentSubmissions } = useProfile(params.username);
 
   return (
     <>
@@ -16,6 +17,7 @@ export default function Page({ params }: { params: { username: string } }) {
           totalScore={profile?.totalScore || 0}
           totalSubmissions={profile?.totalSubmissions || 0}
         />
+        <RecentSubmissions submissions={recentSubmissions ?? []} />
       </div>
     </>
   );

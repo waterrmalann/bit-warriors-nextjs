@@ -24,7 +24,9 @@ export const API_ROUTES = {
         GET: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/leaderboards`,
     },
     SUBMISSION: {
-        FEEDBACK_GET: (submissionId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/feedbacks/${submissionId}`
+        FEEDBACK_GET: (submissionId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/feedbacks/${submissionId}`,
+        USER_GET: (userId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/submissions/${userId}`,
+        USER_PROBLEM_GET: (userId: string, problemId: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/submission/submissions/${userId}/${problemId}`,
     },
     PROFILE: {
         GET: (username: string) => `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/users/${username}`,
