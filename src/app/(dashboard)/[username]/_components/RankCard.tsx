@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card'
+import { Card, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator';
 import React from 'react'
 
@@ -10,6 +10,7 @@ interface RankCardProps extends React.HTMLAttributes<HTMLDivElement> {
 const RankCard = ({totalScore, totalSubmissions}: RankCardProps) => {
   return (
     <Card className="bg-neutral-800 w-[1024px] mx-auto p-5">
+        <CardTitle className="my-3 tracking-wide">Statistics</CardTitle>
         <div className="flex space-around gap-5">
           <div>
             <h1 className="font-bold text-3xl my-2 text-primary font-mono">{totalScore}</h1>

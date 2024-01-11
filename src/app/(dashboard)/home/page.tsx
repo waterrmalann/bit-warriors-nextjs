@@ -22,17 +22,9 @@ import isAuth from '@/components/isAuthenticated';
 export default isAuth(HomePage);
 
 function HomePage() {
-    const { user, loading, isLoggedIn, logout } = useUser();
+    const { user, loading, isLoggedIn } = useUser();
     const { problems } = useProblems();
     const router = useRouter();
-
-    async function handleLogout() {
-        try {
-            await logout();
-        } finally {
-            router.replace('/login');
-        }
-    }
 
     return (
         <>
@@ -43,41 +35,40 @@ function HomePage() {
                 <div className="grid grid-cols-5">
 
                     <Select>
-                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-800">
                             <SelectValue placeholder="Difficulty" />
                         </SelectTrigger>
-                        <SelectContent className="dark:bg-neutral-700">
+                        <SelectContent className="dark:bg-neutral-800">
                             <SelectItem value="light">Easy</SelectItem>
                             <SelectItem value="dark">Medium</SelectItem>
                             <SelectItem value="system">Hard</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select>
-                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-800">
                             <SelectValue placeholder="Status" />
                         </SelectTrigger>
-                        <SelectContent className="dark:bg-neutral-700">
+                        <SelectContent className="dark:bg-neutral-800">
                             <SelectItem value="light">Incomplete</SelectItem>
                             <SelectItem value="dark">Solved</SelectItem>
                             <SelectItem value="system">Unattempted</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select>
-                        <SelectTrigger className="w-[180px] dark:bg-neutral-700">
+                        <SelectTrigger className="w-[180px] dark:bg-neutral-800">
                             <SelectValue placeholder="Tags" />
                         </SelectTrigger>
-                        <SelectContent className="dark:bg-neutral-700">
+                        <SelectContent className="dark:bg-neutral-800">
                             <SelectItem value="light">Array</SelectItem>
                             <SelectItem value="dark">DSA</SelectItem>
                             <SelectItem value="system">Strings</SelectItem>
                         </SelectContent>
                     </Select>
-                    <Input type="text" className="col-span-2 dark:bg-neutral-700" placeholder="Search questions..." />
+                    <Input type="text" className="col-span-2 dark:bg-neutral-800" placeholder="Search questions..." />
 
                 </div>
 
                 <ProblemsTable problems={problems ?? []} />
-                <Button onClick={handleLogout}>Logout</Button>
             </div>
         </>
     )

@@ -29,7 +29,7 @@ const ProfileCard = ({ profile }: ProfileCardProps) => {
       <div className="flex">
         <ProfilePicture />
         <CardHeader>
-          <CardTitle>Unknown {profile.clan && <span className="text-base text-zinc-400">{'[' + profile.clan + ']'}</span>}</CardTitle>
+          <CardTitle>{profile.username} {profile.clan && <span className="text-base text-zinc-400">{'[' + profile.clan + ']'}</span>}</CardTitle>
           <p className="text-lg text-primary font-mono" >@{profile.username}</p>
           <CardDescription>{profile.bio || "i am a very mysterious person."}</CardDescription>
         </CardHeader>
