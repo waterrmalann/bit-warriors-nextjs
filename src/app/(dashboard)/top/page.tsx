@@ -1,16 +1,15 @@
 "use client";
 
 import { useLeaderboards } from "@/hooks/userLeaderboards";
+import Rankboard from "./_components/Rankboard";
 
 const TopPage = () => {
   const { leaderboards } = useLeaderboards();
 
   return (
-    <div>
-      <h1 className="font-bold text-xl">Global Leaderboards</h1>
-      {leaderboards?.map(e => (
-        <p key={e.username}>#{e.rank} - {e.username} - {e.totalScore} - {e.totalSubmissions}</p>
-      ))}
+    <div className="dark:bg-neutral-900 min-h-screen h-full space-y-6 p-16 pb-16 md:block">
+      <h1 className="font-bold text-4xl text-center">Global Leaderboards</h1>
+      <Rankboard users={leaderboards || []} />
     </div>
   )
 }
