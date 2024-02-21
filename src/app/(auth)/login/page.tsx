@@ -91,6 +91,11 @@ function LoginPage() {
             </Link>
             <div className="mx-auto h-full flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                 <div className="flex flex-col space-y-2 text-center">
+                    <div className="border-orange-400 border-2 rounded-md p-5">
+                        <h2 className="font-bold">Try these credentials.</h2>
+                        <p><strong>Email: </strong> <pre>test@example.com</pre></p>
+                        <p><strong>Password: </strong> <pre>testPassword</pre></p>
+                    </div>
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Login to your account.
                     </h1>

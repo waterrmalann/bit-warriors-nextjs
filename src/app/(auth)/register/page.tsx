@@ -43,6 +43,9 @@ function RegisterPage() {
     async function registerHandler(e: React.SyntheticEvent) {
         e.preventDefault();
 
+        toast({ variant: "warning", title: "Registration Disabled.", description: "Registration is currently disabled to thwart spam, check login page" });
+        return;
+        
         const username = usernameRef.current?.value;
         const email = emailRef.current?.value;
         const password = passwordRef.current?.value;
