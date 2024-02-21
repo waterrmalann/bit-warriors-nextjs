@@ -46,48 +46,48 @@ function RegisterPage() {
         toast({ variant: "warning", title: "Registration Disabled.", description: "Registration is currently disabled to thwart spam, check login page" });
         return;
         
-        const username = usernameRef.current?.value;
-        const email = emailRef.current?.value;
-        const password = passwordRef.current?.value;
+        // const username = usernameRef.current?.value;
+        // const email = emailRef.current?.value;
+        // const password = passwordRef.current?.value;
 
-        if (!username || username.length < 4) {
-            toast({
-                variant: "warning",
-                title: "Enter in a valid username."
-            });
-            return;
-        }
-        if (!email) {
-            toast({
-                variant: "warning",
-                title: "Enter in a valid email address."
-            });
-            return;
-        }
-        if (!password || password.length < 8) {
-            toast({
-                variant: "warning",
-                title: "Password must be atleast 8 characters long."
-            });
-            return;
-        }
+        // if (!username || username.length < 4) {
+        //     toast({
+        //         variant: "warning",
+        //         title: "Enter in a valid username."
+        //     });
+        //     return;
+        // }
+        // if (!email) {
+        //     toast({
+        //         variant: "warning",
+        //         title: "Enter in a valid email address."
+        //     });
+        //     return;
+        // }
+        // if (!password || password.length < 8) {
+        //     toast({
+        //         variant: "warning",
+        //         title: "Password must be atleast 8 characters long."
+        //     });
+        //     return;
+        // }
 
-        setIsLoading(true);
-        const { data, error } = await trigger(username, email, password);
-        setIsLoading(false);
-        if (error) {
-            toast({
-                variant: "destructive",
-                title: "An error occured",
-                description: error.message
-            });
-        } else {
-            toast({
-                title: "Email Verification",
-                description: "You should receive a link to verify your email address."
-            });
-            router.push('/login');
-        }
+        // setIsLoading(true);
+        // const { data, error } = await trigger(username, email, password);
+        // setIsLoading(false);
+        // if (error) {
+        //     toast({
+        //         variant: "destructive",
+        //         title: "An error occured",
+        //         description: error.message
+        //     });
+        // } else {
+        //     toast({
+        //         title: "Email Verification",
+        //         description: "You should receive a link to verify your email address."
+        //     });
+        //     router.push('/login');
+        // }
     }
 
     return (
